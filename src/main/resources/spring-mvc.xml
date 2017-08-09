@@ -3,13 +3,12 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jms="http://www.springframework.org/schema/jms"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                 http://www.springframework.org/schema/context
                 http://www.springframework.org/schema/context/spring-context-3.1.xsd
                 http://www.springframework.org/schema/mvc
-                http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+                http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
     <!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
     <mvc:annotation-driven />
@@ -22,9 +21,6 @@
     <!-- 默认访问跳转到登录页面，即定义无Controller的path<->view直接映射
     <mvc:view-controller path="/" view-name="redirect:/login"/>
     -->
-
-    <!-- 静态文件访问 -->
-    <!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
 
     <!-- 用于返回json格式 -->
     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -48,8 +44,9 @@
     <!-- 其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
-        <property name="prefix" value="/" />
+        <property name="prefix" value="/pages/" />
         <property name="suffix" value=".html" />
+
     </bean>
 
     <!-- 总错误处理-->
@@ -66,8 +63,12 @@
         </bean> -->
 
     <!-- 静态资源加载 -->
-    <!--<mvc:resources location="/css/" mapping="/css/**" />-->
+    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />
 
-    <!--<mvc:resources location="/images/" mapping="/images/**" />-->
-    <!--<mvc:resources location="/ATTACHMENT/" mapping="/ATTACHMENT/**" />-->
+    <!-- 使用 Swagger Restful API文档时，添加此注解 -->
+    <mvc:default-servlet-handler />
+
+
 </beans>
