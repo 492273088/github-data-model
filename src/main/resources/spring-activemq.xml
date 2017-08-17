@@ -35,12 +35,14 @@
     <jms:listener-container acknowledge="auto" connection-factory="connectionFactory" container-type="default"
                             destination-type="queue">
         <jms:listener destination="test.queue" ref="queueReceiver"/>
+        <jms:listener destination="test.queue" ref="queueReceiver1"/>
     </jms:listener-container>
     <!--<bean class="com.winsion.datamodel.message.comsumer.TopicReceiver" id="topicReceiver"/>-->
     <!-- 定义Topic监听器 -->
     <jms:listener-container acknowledge="auto" connection-factory="connectionFactory" container-type="default"
                             destination-type="topic">
         <jms:listener destination="test.topic" ref="topicReceiver"/>
+        <jms:listener destination="test.topic" ref="topicReceiver1"/>
     </jms:listener-container>
     <!-- 消息消费者 end -->
 

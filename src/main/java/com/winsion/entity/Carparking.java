@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
+/**
+ * 停车场实体
+ */
 @Entity
 @DynamicInsert
 @DynamicUpdate

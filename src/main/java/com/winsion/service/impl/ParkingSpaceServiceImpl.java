@@ -74,6 +74,7 @@ public class ParkingSpaceServiceImpl implements ParkingSpaceService {
                 parkingSpace.setFrequency(parkingSpace.getFrequency()+1);
                 parkingSpace.setLastLeaveTime(new Date());
             }
+//            parkingSpaceRepository.save(parkingSpace);
 
             Carparking carparking = carparkRepository.findOne(parkingSpace.getParkingId());
             if(spacestate.equals(ParkingSpaceState.FREE.getValue())){
@@ -81,6 +82,7 @@ public class ParkingSpaceServiceImpl implements ParkingSpaceService {
             }else{
                 carparking.setUsedNum(carparking.getUsedNum()+1);
             }
+//            carparkRepository.save(carparking);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("lastLeaveTime",parkingSpace.getLastLeaveTime());
             jsonObject.put("lastStopTime",parkingSpace.getLastStopTime());

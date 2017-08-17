@@ -1,7 +1,5 @@
 package com.winsion.common;
 
-import com.alibaba.fastjson.JSONObject;
-
 /**
  * @Author XiaoLei-Guo
  * @Date 2017/8/9/15:16

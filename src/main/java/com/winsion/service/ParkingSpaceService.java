@@ -11,12 +11,31 @@ import java.util.List;
  * @Date 2017/8/7/18:31
  **/
 public interface ParkingSpaceService {
+    /**
+     * 根据停车位ID移除停车位信息
+     * @param parkingSpaceId
+     * @return
+     */
     Message remove(String parkingSpaceId);
 
+    /**
+     * 根据停车位ID获取停车位信息
+     * @param parkingSpaceId
+     * @return
+     */
     Message get(String parkingSpaceId);
 
+    /**
+     * 获取所有停车位信息
+     * @return
+     */
     Message findAll();
 
+    /**
+     * 根据停车场id获取该停车场内所有的停车位信息
+     * @param carparkingId
+     * @return
+     */
     Message findAllByCaeparkingId(String carparkingId);
 
     /**

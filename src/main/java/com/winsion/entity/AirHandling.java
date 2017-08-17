@@ -10,6 +10,7 @@ import javax.persistence.Table;
 /**
  * @Author XiaoLei-Guo
  * @Date 2017/8/9/10:52
+ * 空调处理机实体
  **/
 @Entity
 @DynamicInsert
@@ -47,6 +48,24 @@ public class AirHandling extends BaseEntity{
      * */
     @Column(name = "indoortemp")
     private Double indoortemp;
+
+
+    /**
+     * 入水口温度
+     * */
+    @Column(name = "inairtemp")
+    private Double inairtemp;
+
+    /**
+     *  出水口温度
+     * */
+    @Column(name = "outairtemp")
+    private Double outairtemp;
+
+
+    @Column(name = "alarminfo")
+    private String alarminfo;
+
 
     public String getDeviceno() {
         return deviceno;
@@ -88,8 +107,33 @@ public class AirHandling extends BaseEntity{
         this.indoortemp = indoortemp;
     }
 
+
+    public Double getInairtemp() {
+        return inairtemp;
+    }
+
+    public void setInairtemp(Double inairtemp) {
+        this.inairtemp = inairtemp;
+    }
+
+    public Double getOutairtemp() {
+        return outairtemp;
+    }
+
+    public void setOutairtemp(Double outairtemp) {
+        this.outairtemp = outairtemp;
+    }
+
+    public String getAlarminfo() {
+        return alarminfo;
+    }
+
+    public void setAlarminfo(String alarminfo) {
+        this.alarminfo = alarminfo;
+    }
+
     @Override
     public String toString() {
-        return "AirHandling{" + "deviceno='" + deviceno + '\'' + ", areaid='" + areaid + '\'' + ", runstate=" + runstate + ", settemp=" + settemp + ", indoortemp=" + indoortemp + '}';
+        return "AirHandling{" + "deviceno='" + deviceno + '\'' + ", areaid='" + areaid + '\'' + ", runstate=" + runstate + ", settemp=" + settemp + ", indoortemp=" + indoortemp + ", inairtemp=" + inairtemp + ", outairtemp=" + outairtemp + ", alarminfo='" + alarminfo + '\'' + '}';
     }
 }

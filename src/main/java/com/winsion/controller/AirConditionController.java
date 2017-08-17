@@ -16,11 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping(value = "/airCondition")
-@Api(value = "/airCondition", description = "空调控制器")
+@Api(value = "/airCondition", description = "空调管理")
 public class AirConditionController {
 
     @Autowired
     AirConditionService airConditionService;
+
+    /**
+     * 获取空调列表
+     */
+    @ApiOperation("获取所有空调列表")
+    @RequestMapping(value = "findAllAirCondition", method = RequestMethod.POST)
+    public Message findAllAirCondition() {
+        return airConditionService.findAll();
+    }
 
     /**
      * 根据区域信息获取空调列表
@@ -31,6 +40,7 @@ public class AirConditionController {
             @RequestParam("areaId") String areaId) {
         return airConditionService.findAllByAreaId(areaId);
     }
+
 
     /**
      * 根据空调id设置空调的运行状态
@@ -66,9 +76,9 @@ public class AirConditionController {
     }
 
     /**
-     * 根据空调id设置空调温度
+     * 根据空调id设置空调设置温度
      */
-    @ApiOperation("根据空调id设置空调温度")
+    @ApiOperation("根据空调id设置空调设置温度")
     @RequestMapping(value = "setAirTemperature", method = RequestMethod.POST)
     public Message setAirTemperature(
             @RequestParam("AirConditionId") String AirConditionId,
@@ -77,14 +87,35 @@ public class AirConditionController {
     }
 
     /**
+     * 根据空调id设置空调当前室内温度
+     */
+    @ApiOperation("根据空调id设置空调当前室内温度")
+    @RequestMapping(value = "setAirIndoorTemp", method = RequestMethod.POST)
+    public Message setAirIndoorTemp(
+            @RequestParam("AirConditionId") String AirConditionId,
+            @RequestParam("indoorTemp") Double indoorTemp) {
+        return airConditionService.setAirIndoorTemp(AirConditionId, indoorTemp);
+    }
+
+    /**
      * 获取所有冷却水泵信息
      */
     @ApiOperation("获取所有冷却水泵信息")
     @RequestMapping(value = "findAllCoolingPump", method = RequestMethod.POST)
-    public Message findAllCoolingPump(
+    public Message findAllCoolingPump() {
+        return airConditionService.findAllCoolingPump();
+    }
+
+    /**
+     * 通过区域ID获取所有冷却水泵信息
+     */
+    @ApiOperation("通过区域ID获取所有冷却水泵信息")
+    @RequestMapping(value = "findAllCoolingPumpByAreaId", method = RequestMethod.POST)
+    public Message findAllCoolingPumpByAreaId(
             @RequestParam("areaId") String areaId) {
         return airConditionService.findAllCoolingPump(areaId);
     }
+
 
     /**
      * 冷却水泵开关接口
@@ -97,14 +128,89 @@ public class AirConditionController {
         return airConditionService.switchCoolingPump(coolingPumpId, state);
     }
 
+
     /**
      * 获取所有冷却塔信息
      */
     @ApiOperation("获取所有冷却塔信息")
     @RequestMapping(value = "findAllCoolingTower", method = RequestMethod.POST)
-    public Message findAllCoolingTower(
+    public Message findAllCoolingTower() {
+        return airConditionService.findAllCoolingTower();
+    }
+
+    /**
+     * 根据区域ID获取所有冷却塔信息
+     */
+    @ApiOperation("根据区域ID获取所有冷却塔信息")
+    @RequestMapping(value = "findAllCoolingTowerByAreaId", method = RequestMethod.POST)
+    public Message findAllCoolingTowerByAreaId(
             @RequestParam("areaId") String areaId) {
         return airConditionService.findAllCoolingTower(areaId);
+    }
+
+    /**
+     * 冷却塔开关接口
+     */
+    @ApiOperation("根据冷却塔编号和状态信息开关冷却塔")
+    @RequestMapping(value = "switchCoolingTower", method = RequestMethod.POST)
+    public Message switchCoolingTower(
+            @RequestParam("coolingTowerId") String coolingTowerId,
+            @RequestParam("state") Integer state) {
+        return airConditionService.switchCoolingTower(coolingTowerId, state);
+    }
+
+
+    /**
+     * 获取所有处理机信息
+     */
+    @ApiOperation("获取所有处理机信息")
+    @RequestMapping(value = "findAllAirHanding", method = RequestMethod.POST)
+    public Message findAllAirHanding() {
+        return airConditionService.findAllAirHanding();
+    }
+
+    /**
+     * 根据区域ID获取所有处理机信息
+     */
+    @ApiOperation("根据区域ID获取所有处理机信息")
+    @RequestMapping(value = "findAllAirHandingByAreaId", method = RequestMethod.POST)
+    public Message findAllAirHandingByAreaId(
+            @RequestParam("areaId") String areaId) {
+        return airConditionService.findAllAirHanding(areaId);
+    }
+
+    /**
+     * 处理机入水口温度
+     */
+    @ApiOperation("处理机入水口温度")
+    @RequestMapping(value = "setInairtemp", method = RequestMethod.POST)
+    public Message setInairtemp(
+            @RequestParam("airHandingId") String airHandingId,
+            @RequestParam("inairtemp") Double inairtemp) {
+        return airConditionService.setInairtemp(airHandingId, inairtemp);
+    }
+
+    /**
+     * 处理机出水口温度
+     */
+    @ApiOperation("处理机出水口温度")
+    @RequestMapping(value = "setOutairtemp", method = RequestMethod.POST)
+    public Message setOutairtemp(
+            @RequestParam("airHandingId") String airHandingId,
+            @RequestParam("outairtemp") Double outairtemp) {
+        return airConditionService.setOutairtemp(airHandingId, outairtemp);
+    }
+
+
+    /**
+     * 处理机开关接口
+     */
+    @ApiOperation("根据处理机编号和状态信息开关处理机")
+    @RequestMapping(value = "switchAirHanding", method = RequestMethod.POST)
+    public Message switchAirHanding(
+            @RequestParam("airHandingId") String airHandingId,
+            @RequestParam("state") Integer state) {
+        return airConditionService.switchAirHanding(airHandingId, state);
     }
 
 }

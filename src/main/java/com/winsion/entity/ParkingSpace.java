@@ -7,6 +7,9 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * 停车位实体
+ */
 @Entity
 @DynamicInsert
 @DynamicUpdate

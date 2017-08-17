@@ -29,7 +29,7 @@ public class ParkingController {
     ParkingSpaceService parkingSpaceService;
 
     @ApiOperation("获取停车场列表")
-    @RequestMapping(value = "/findAllParking", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllParking", method = RequestMethod.POST)
     public Message findAllParking() {
         return carparkService.findAll();
     }
@@ -51,7 +51,7 @@ public class ParkingController {
 
 
     @ApiOperation("获取所有停车位信息")
-    @RequestMapping(value = "/findAllParkingSpace", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllParkingSpace", method = RequestMethod.POST)
     public Message findAllParkingSpace() {
         return parkingSpaceService.findAll();
     }
@@ -66,9 +66,9 @@ public class ParkingController {
     @ApiOperation("更新停车位信息")
     @RequestMapping(value = "updateParkingSpaceInfo", method = RequestMethod.POST)
     public Message updateParkingSpaceInfo(
-            @RequestParam(value = "parkingSpaceId", required = true) String parkingSpaceId,
+            @RequestParam(value = "parkingSpaceId") String parkingSpaceId,
             @RequestParam(value = "carno", required = false) String carno,
-            @RequestParam(value = "spacestate", required = true) Integer spacestate) {
+            @RequestParam(value = "spacestate") Integer spacestate) {
         return parkingSpaceService.updateParkingSpaceInfo(parkingSpaceId, carno, spacestate);
     }
 
